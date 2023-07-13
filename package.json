@@ -1,0 +1,19 @@
+{
+  "name": "point-system",
+  "version": "1.0.0",
+  "description": "Point System Bot made in Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chrissch.dev",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^1.6.3",
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.3.1",
+    "glob": "^8.1.0",
+    "path": "^0.12.7",
+    "pg": "^8.11.1"
+  }
+}
