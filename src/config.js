@@ -1,5 +1,5 @@
 module.exports = {
-    owners: ['592663451978039298'],
+    owners: ['OWNER_ID'],
     database: {
         host: "DB_IP",
         port: "DB_PORT",
