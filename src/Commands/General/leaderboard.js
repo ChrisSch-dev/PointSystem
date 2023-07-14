@@ -27,7 +27,7 @@ module.exports = class extends Command {
 
         const mapping = docs.rows
             .sort((a, b) => b.points - a.points)
-            .filter(c => c.points >= 0)
+            .filter(c => c.points > 0)
             .map((c, index) => `${0 + (++index)}) **${this.client.users.cache.get(c.userid).username || (await (this.client.users.fetch(c.userid))).username}:** ${c.points > 1000 ? "1000+" : c.points} Pts`)
 
         const toPaginate = this.client.util.page(mapping, 5, '\n');
