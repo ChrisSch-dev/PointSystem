@@ -1,8 +1,7 @@
 const { InteractionType } = require('discord.js')
 const Client = require('./Client');
 const path = require('path')
-const { promisify } = require('util');
-const glob = promisify(require('glob'))
+const { glob } = require('glob')
 const Command = require('./Command')
 const Event = require('./Event')
 
@@ -44,7 +43,7 @@ module.exports = class Util {
             .join(" ")
     }
     async LoadCommands() {
-        glob(`${this.client.util.directory}/Commands/**/*.js`).then(async (slashFile) => {
+        glob(`${this.directory}/Commands/**/*.js`).then(async (slashFile) => {
             for (let cmds of slashFile) {
                 delete require.cache[cmds];
 
@@ -61,7 +60,7 @@ module.exports = class Util {
         })
     }
     async LoadEvents() {
-        glob(`${this.client.util.directory}/Events/**/*.js`).then(async (eventFile) => {
+        glob(`${this.directory}/Events/**/*.js`).then(async (eventFile) => {
             for (let event of eventFile) {
                 delete require.cache[event];
 
