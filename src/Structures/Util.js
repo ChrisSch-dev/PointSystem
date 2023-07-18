@@ -61,7 +61,6 @@ module.exports = class Util {
         })
     }
     async LoadEvents() {
-        console.log(path.join(this.directory, "Events", "**", "*.js"))
         glob(path.join(this.directory, "Events", "**", "*.js")).then(async (eventFile) => {
             for (let event of eventFile) {
                 delete require.cache[event];
