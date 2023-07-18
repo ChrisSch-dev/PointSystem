@@ -25,10 +25,12 @@ module.exports = class extends Command {
             content: "Leaderboard is not available in this server yet!"
         });
 
-        const mapping = docs.rows
+        for (const x of docs.rows) await this.client.users.fetch(x.userid).catch(() => { })
+
+        const mapping = await docs.rows
             .sort((a, b) => b.points - a.points)
             .filter(c => c.points > 0)
-            .map((c, index) => `${0 + (++index)}) **${this.client.users.cache.get(c.userid).username || (await (this.client.users.fetch(c.userid))).username}:** ${c.points > 1000 ? "1000+" : c.points} Pts`)
+            .map((c, index) => `${0 + (++index)}) **${this.client.users.cache.get(c.userid).username}:** ${c.points > 1000 ? "1000+" : c.points} Pts`)
 
         const toPaginate = this.client.util.page(mapping, 5, '\n');
         const { results, page, pages } = toPaginate;
