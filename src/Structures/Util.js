@@ -4,7 +4,6 @@ const path = require('path')
 const { glob } = require('glob')
 const Command = require('./Command')
 const Event = require('./Event')
-const sep = path.sep;
 
 module.exports = class Util {
     /**
@@ -15,7 +14,7 @@ module.exports = class Util {
         this.client = client
     }
     get directory() {
-        return `${path.dirname(require.main.filename)}${sep}`
+        return `${path.dirname(require.main.filename)}${path.sep}`
     }
     minToMs(min) {
         return min * 60 * 1000
@@ -44,7 +43,8 @@ module.exports = class Util {
             .join(" ")
     }
     async LoadCommands() {
-        glob(`${this.directory}Commands${sep}**${sep}*.js`).then(async (slashFile) => {
+        console.log(path.join(this.directory, "Commands", "**", "*.js"))
+        glob(path.join(this.directory, "Commands", "**", "*.js")).then(async (slashFile) => {
             for (let cmds of slashFile) {
                 delete require.cache[cmds];
 
@@ -61,7 +61,8 @@ module.exports = class Util {
         })
     }
     async LoadEvents() {
-        glob(`${this.directory}Events${sep}**${sep}*.js`).then(async (eventFile) => {
+        console.log(path.join(this.directory, "Events", "**", "*.js"))
+        glob(path.join(this.directory, "Events", "**", "*.js")).then(async (eventFile) => {
             for (let event of eventFile) {
                 delete require.cache[event];
 
